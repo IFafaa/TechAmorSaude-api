@@ -26,7 +26,7 @@ export class EmailService {
     body: string,
   ): Promise<void> {
     const emailOptions = {
-      from: "kifominha@gmail.com",
+      from: "techamorsaude@gmail.com",
       to: destiny,
       subject: subject,
       text: body,
