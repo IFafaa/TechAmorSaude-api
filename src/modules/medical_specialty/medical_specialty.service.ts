@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { CreateMedicalSpecialtyDto } from "./dto/create-medical_specialty.dto";
+import { CreateMedicalSpecialtyDto } from "./dtos/create-medical_specialty.dto";
 import { MedicalSpecialty } from "./entities/medical_specialty.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -34,6 +34,15 @@ export class MedicalSpecialtyService {
   async findOneById(id: number) {
     try {
       const medicalSpecialty = await this.repository.findOne({ where: { id } });
+      return medicalSpecialty;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findBy(filter: Partial<MedicalSpecialty>) {
+    try {
+      const medicalSpecialty = await this.repository.findBy(filter);
       return medicalSpecialty;
     } catch (error) {
       throw error;

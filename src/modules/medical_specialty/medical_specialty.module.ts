@@ -7,5 +7,6 @@ import { DatabaseModule } from "src/database/database.module";
   imports: [DatabaseModule],
   controllers: [MedicalSpecialtyController],
   providers: [MedicalSpecialtyService],
+  exports: [MedicalSpecialtyService],
 })
 export class MedicalSpecialtyModule {}

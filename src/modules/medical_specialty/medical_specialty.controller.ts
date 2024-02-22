@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { MedicalSpecialtyService } from './medical_specialty.service';
-import { CreateMedicalSpecialtyDto } from './dto/create-medical_specialty.dto';
-import { UpdateMedicalSpecialtyDto } from './dto/update-medical_specialty.dto';
+import { CreateMedicalSpecialtyDto } from './dtos/create-medical_specialty.dto';
+import { UpdateMedicalSpecialtyDto } from './dtos/update-medical_specialty.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags("Medical Specialties")

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { CreateRegionDto } from "./dto/create-region.dto";
+import { CreateRegionDto } from "./dtos/create-region.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Region } from "./entities/region.entity";
 import { Repository } from "typeorm";
