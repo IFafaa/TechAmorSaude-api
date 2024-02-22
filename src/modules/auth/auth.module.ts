@@ -6,6 +6,7 @@ import { EmailService } from "src/common/services/email.service";
 import { TokenService } from "src/common/services/token.service";
 import { JwtModule } from "@nestjs/jwt";
 import { UserModule } from "../user/user.module";
+import { CryptService } from "src/common/services/crypt.service";
 
 @Module({
   imports: [
@@ -15,9 +16,9 @@ import { UserModule } from "../user/user.module";
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
     }),
-    UserModule
+    UserModule,
   ],
-  providers: [AuthService, EmailService, TokenService],
+  providers: [AuthService, EmailService, TokenService, CryptService],
   controllers: [AuthController],
 })
 export class AuthModule {}
