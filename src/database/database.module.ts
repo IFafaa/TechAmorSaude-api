@@ -1,5 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { Company } from "src/modules/company/entities/company.entity";
+import { MedicalSpecialty } from "src/modules/medical_specialty/entities/medical_specialty.entity";
+import { Region } from "src/modules/region/entities/region.entity";
 import { User } from "src/modules/user/entities/user.entity";
 
 // const mysqlConfig = {
@@ -27,12 +30,12 @@ const DB = TypeOrmModule.forRoot({
   username: "root",
   password: "ki32151524",
   database: "techamorsaude",
-  entities: [__dirname + "/../**/*.entity{.ts,.js}"],
+  entities: [User, Region, MedicalSpecialty, Company],
   synchronize: true,
 });
 
 @Module({
-  imports: [DB, TypeOrmModule.forFeature([User])],
+  imports: [DB, TypeOrmModule.forFeature([User, Region, MedicalSpecialty, Company])],
   controllers: [],
   providers: [],
   exports: [TypeOrmModule],

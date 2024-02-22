@@ -10,6 +10,7 @@ import { AuthMiddleware } from "./common/middlewares/auth.middleware";
 import { UserModule } from "./modules/user/user.module";
 import { RegionModule } from "./modules/region/region.module";
 import { MedicalSpecialtyModule } from "./modules/medical_specialty/medical_specialty.module";
+import { CompanyModule } from "./modules/company/company.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MedicalSpecialtyModule } from "./modules/medical_specialty/medical_spec
     UserModule,
     RegionModule,
     MedicalSpecialtyModule,
+    CompanyModule,
   ],
   controllers: [],
   providers: [],
