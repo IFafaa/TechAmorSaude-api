@@ -5,37 +5,22 @@ import { MedicalSpecialty } from "src/modules/medical_specialty/entities/medical
 import { Region } from "src/modules/region/entities/region.entity";
 import { User } from "src/modules/user/entities/user.entity";
 
-// const mysqlConfig = {
-//   type: "mysql",
-//   host: "localhost",
-//   port: 3306,
-//   username: "root",
-//   password: "root",
-//   database: "test",
-//   entities: [],
-//   synchronize: true,
-// };
-
-// const sqliteConfig = {
-//   type: "sqlite",
-//   database: "../../database.sqlite",
-//   entities: [User],
-//   synchronize: true,
-// };
-
 const DB = TypeOrmModule.forRoot({
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "ki32151524",
-  database: "techamorsaude",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT as unknown as number,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   entities: [User, Region, MedicalSpecialty, Company],
   synchronize: true,
 });
 
 @Module({
-  imports: [DB, TypeOrmModule.forFeature([User, Region, MedicalSpecialty, Company])],
+  imports: [
+    DB,
+    TypeOrmModule.forFeature([User, Region, MedicalSpecialty, Company]),
+  ],
   controllers: [],
   providers: [],
   exports: [TypeOrmModule],
