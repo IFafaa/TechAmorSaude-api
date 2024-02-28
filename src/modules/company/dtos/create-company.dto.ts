@@ -1,16 +1,9 @@
-import { Company } from "../entities/company.entity";
-import { Region } from "src/modules/region/entities/region.entity";
-import {
-  ArrayMinSize,
-  IsDateString,
-  IsNotEmpty,
-  ValidateNested,
-} from "class-validator";
-import { MedicalSpecialtyDto } from "./medical-specialty.dto";
-import { Type } from "class-transformer";
-import { RegionDto } from "./region.dto";
+import { ArrayMinSize, IsDateString, IsNotEmpty } from "class-validator";
 
-export class CreateCompanyDto extends Company {
+import { MedicalSpecialty } from "src/modules/medical_specialty/entities/medical_specialty.entity";
+import { Region } from "src/modules/region/entities/region.entity";
+
+export class CreateCompanyDto {
   @IsNotEmpty()
   company_name: string;
 
@@ -29,12 +22,8 @@ export class CreateCompanyDto extends Company {
 
   @IsNotEmpty()
   @ArrayMinSize(1)
-  @ValidateNested({ each: true })
-  @Type(() => MedicalSpecialtyDto)
-  medical_specialties: MedicalSpecialtyDto[];
+  medical_specialties: MedicalSpecialty[];
 
   @IsNotEmpty()
-  @ValidateNested()
-  @Type(() => Region)
-  region: RegionDto;
+  region: Region;
 }

@@ -13,14 +13,23 @@ export class CompanyService {
     private readonly medicalSpecialtyService: MedicalSpecialtyService,
   ) {}
 
-  async create(_company: CreateCompanyDto): Promise<Company> {
+  async create(_company: CreateCompanyDto) {
     try {
-      _company = {
+      const company: Omit<Company, "id"> = {
         ..._company,
         created_at: new Date(),
+        medical_specialties: _company.medical_specialties.map((f) => ({
+          id: f,
+        })) as any,
       };
-      const company = await this.repository.create(_company);
-      return this.repository.save(company);
+
+      const companyCreated = await this.repository.create(company);
+      await this.repository.save(companyCreated);
+      return {
+        data: {
+          id: companyCreated.id,
+        },
+      };
     } catch (error) {
       throw error;
     }
@@ -50,9 +59,15 @@ export class CompanyService {
   async findBy(filter: Partial<Company>): Promise<Company[]> {
     try {
       const companies = await this.repository.find({
-        where: filter,
         relations: { region: true, medical_specialties: true },
       });
+      if (filter.company_name || filter.fantasy_name) {
+        return companies.filter(
+          (company) =>
+            company.company_name.includes(filter.company_name) ||
+            company.fantasy_name.includes(filter.fantasy_name),
+        );
+      }
       return companies;
     } catch (error) {
       throw error;
@@ -66,10 +81,17 @@ export class CompanyService {
         return null;
       }
 
-      _company.created_at = company.created_at;
       _company.id = company.id;
+      _company.medical_specialties = _company.medical_specialties.map((f) => ({
+        id: f,
+      })) as any;
 
-      return await this.repository.save(_company);
+      await this.repository.save(_company);
+      return {
+        data: {
+          id: _company.id,
+        },
+      };
     } catch (error) {
       throw error;
     }

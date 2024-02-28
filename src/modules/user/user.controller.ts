@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Controller, Delete, Headers } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { UserService } from "./user.service";
 import { User } from "./entities/user.entity";
@@ -8,8 +8,8 @@ import { User } from "./entities/user.entity";
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post("")
-  async remove(@Body() user: Omit<User, "id">) {
-    return await this.userService.create(user);
+  @Delete("")
+  async remove(@Headers("user") user: User) {
+    return await this.userService.delete(user.id);
   }
 }

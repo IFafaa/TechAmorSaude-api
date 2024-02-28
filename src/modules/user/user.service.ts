@@ -34,7 +34,15 @@ export class UserService {
         : null;
       return hasEmailRegistered ?? null;
     } catch (error) {
+      throw error;
+    }
+  }
 
+  async delete(id: number) {
+    try {
+      const _user = await this.repository.delete(id);
+      return _user;
+    } catch (error) {
       throw error;
     }
   }
