@@ -11,9 +11,11 @@ import { UserModule } from "./modules/user/user.module";
 import { RegionModule } from "./modules/region/region.module";
 import { MedicalSpecialtyModule } from "./modules/medical_specialty/medical_specialty.module";
 import { CompanyModule } from "./modules/company/company.module";
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     DatabaseModule,
     AuthModule,
     UserModule,
@@ -26,6 +28,8 @@ import { CompanyModule } from "./modules/company/company.module";
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
+    
+    
     consumer
       .apply(AuthMiddleware)
       .exclude(

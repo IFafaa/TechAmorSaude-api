@@ -5,6 +5,6 @@ export class MedicalSpecialty {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: false })
   label: string;
 }
