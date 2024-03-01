@@ -1,4 +1,4 @@
-## Tecnologias
+# Tecnologias
 
 - Back-end:
 NestJS,
@@ -7,12 +7,16 @@ TypeORM
 - DataBase: 
 MySQL
 
-## Pré-requisitos
+# Pré-requisitos
+
 Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
 * Node.js (versão 20 ou superior)
+* Docker
 
-## Iniciando o projeto
+# Iniciando o projeto
+
+## Rodando apenas a API
 Siga as etapas abaixo para iniciar o projeto em sua máquina local:
 
 Clone este repositório para o diretório desejado em sua máquina:
@@ -39,7 +43,30 @@ Após a conclusão da instalação das dependências, você pode iniciar o servi
 npm run start:dev
 ```
 
-## Estrutura
+## Rodando o Docker Compose do MySQL e da API
+
+Clone este repositório para o diretório desejado em sua máquina:
+
+```
+git clone https://github.com/IFafaa/TechAmorSaude-api
+```
+
+Navegue até o diretório do projeto:
+
+```
+cd TechAmorSaude-api
+```
+
+Inicialize o docker compose:
+
+```
+docker-compose up
+```
+
+Após a conclusão da inicializacao do compose, você pode acessar o servidor de desenvolvimento atraves da porta localhost:3000/
+
+
+# Estrutura
 
 O projeto utiliza de uma estrutura de pastas a nivel de modulos com as principais pastas sendo:
 
