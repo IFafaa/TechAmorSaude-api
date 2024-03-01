@@ -13,8 +13,8 @@ import { CryptService } from "src/common/services/crypt.service";
     DatabaseModule,
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
+      secret: "F6lO4S8rqD5HtZFUwly8djlqFWKHbPAM",
+      signOptions: { expiresIn: "24h" },
     }),
     UserModule,
   ],
